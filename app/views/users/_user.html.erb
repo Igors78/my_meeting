@@ -1,0 +1,10 @@
+<li class="col-md-6">
+
+
+    <%= link_to user.name, user %> <br>
+    <% if current_user == user %>
+    <%= link_to "Delete", user, method: :delete,
+                                  data: { confirm: "You sure?" }, class:"badge badge-primary" %>
+    <% end %>
+
+</li>
