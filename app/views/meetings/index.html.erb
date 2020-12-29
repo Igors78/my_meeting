@@ -2,13 +2,13 @@
 
 
 <% @meetings.each do |meeting| %>
-<ul>
+<ul class="list-inline">
     <li>Author: <%= meeting.user.name %></li>
     <li><%= meeting.content %></li>
-    <li><%= link_to 'Show', meeting %></li>
+    <li class="list-inline-item"><%= link_to 'Show', meeting, class: "badge bg-warning" %></li>
     <% if current_user?(meeting.user) %>
-    <li><%= link_to 'Edit', edit_meeting_path(meeting) %></li>
-    <li><%= link_to 'Destroy', meeting, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+    <li class="list-inline-item"><%= link_to 'Edit', edit_meeting_path(meeting), class: "badge bg-warning" %></li>
+    <li class="list-inline-item"><%= link_to 'Destroy', meeting, method: :delete, data: { confirm: 'Are you sure?' }, class: "badge bg-warning" %></li>
     <% end %>
 </ul>
 <% end %>
