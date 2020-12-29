@@ -32,7 +32,7 @@ Twitter features.
 
   - This application includes examples of all the major features of Rails, including models, views, controllers, templates, partials, filters, validations, callbacks, has_many/belongs_to and has_many :through associations, security, testing, and deployment.
 
-  [Live Demo Link](https://post-blog-chat.herokuapp.com/)
+  [Live Demo Link](https://my-meetings-app.herokuapp.com/)
 
 ## On your Computer
 
