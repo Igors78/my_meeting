@@ -6,19 +6,24 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <% if logged_in? %>
                 <li class="nav-item">
                     <%= link_to "Users", users_path, class: 'nav-link' %>
                 </li>
+                <% end %>
                 <li class="nav-item">
                     <%= link_to "Meetings", root_path, class: 'nav-link' %>
                 </li>
-
+                <% if logged_in? %>
+                <li><%= link_to 'New Meeting', new_meeting_path, class: 'nav-link' %></li>
+                <% end %>
 
             </ul>
             <div class="d-flex">
 
                 <% if logged_in? %>
                 <ul class="nav navbar-right ">
+                    <li><%= link_to current_user.name, user_path(current_user), class: "mx-2" %></li>
                     <li><%= link_to "Log out", logout_path, class: "mx-2", method: :delete %></li>
                 </ul>
                 <% else %>

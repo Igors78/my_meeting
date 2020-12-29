@@ -1,0 +1,16 @@
+<li id="meeting-<%= meeting.id %>">
+
+    <span class="user"><%= link_to meeting.user.name, meeting.user %></span>
+    <span class="content">
+        <%= meeting.content %>
+
+    </span>
+    <span class="timestamp">
+        Posted <%= time_ago_in_words(meeting.created_at) %> ago.
+        <% if current_user?(meeting.user) %>
+        <%= link_to "Delete", meeting, method: :delete,
+                                       data: { confirm: "You sure?" },
+                                       class: "badge bg-warning" %>
+        <% end %>
+    </span>
+</li>
