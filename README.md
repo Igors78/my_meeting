@@ -1,9 +1,13 @@
-# Post Blog Service
+# Meetings service
 
 ## Summary
 
-In this project, I built a simple Twitter-like post-blog service covering basic
-Twitter features.
+### Objectives
+
+- Construct a bi-directional has many through.
+- Query for associations via the belongs_to, has_many, and has_many through associations.
+- Iterate over associations in a view and display associated data for a primary instance.
+- Identify the join model in a has many through.
 
 ![screenshot](screenshot.png)
 

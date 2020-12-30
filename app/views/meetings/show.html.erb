@@ -1,9 +1,9 @@
 <p>
-    Author: <%= @meeting.user.name %> <br>
+    Author: <%= @meeting.creator.name %> <br>
     <strong>Content:</strong> <br>
     <%= @meeting.content %>
 </p>
-<% if current_user?(@meeting.user) %>
+<% if current_user?(@meeting.creator) %>
 <%= link_to 'Edit', edit_meeting_path(@meeting), class: "badge bg-warning" %>
 <% end %>
 <%= link_to 'Back', meetings_path, class: "badge bg-warning" %>
