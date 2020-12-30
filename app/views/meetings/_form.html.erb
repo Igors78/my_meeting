@@ -1,22 +1,22 @@
 <%= form_with(model: meeting, local: true) do |form| %>
-  <% if meeting.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(meeting.errors.count, "error") %> prohibited this meeting from being saved:</h2>
+<% if meeting.errors.any? %>
+<div id="error_explanation">
+    <h2><%= pluralize(meeting.errors.count, "error") %> prohibited this meeting from being saved:</h2>
 
-      <ul>
+    <ul>
         <% meeting.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
+        <li><%= message %></li>
         <% end %>
-      </ul>
-    </div>
-  <% end %>
+    </ul>
+</div>
+<% end %>
 
-  <div class="field">
+<div class="field">
     <%= form.label :content %>
-    <%= form.text_area :content %>
-  </div>
+    <%= form.text_area :content, :rows => 5, style: 'width:100%;' %>
+</div>
 
-  <div class="actions">
+<div class="actions">
     <%= form.submit %>
-  </div>
+</div>
 <% end %>
