@@ -2,6 +2,7 @@
 
 class Meeting < ApplicationRecord
   belongs_to :creator, class_name: 'User', foreign_key: 'user_id'
-
+  has_many :invites, inverse_of: :invited_to_meeting
+  has_many :invited_users, through: :invites, class_name: 'User'
   validates :content, presence: true
 end

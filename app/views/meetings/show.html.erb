@@ -1,9 +1,27 @@
-<p>
-    Author: <%= @meeting.creator.name %> <br>
-    <strong>Content:</strong> <br>
-    <%= @meeting.content %>
-</p>
-<% if current_user?(@meeting.creator) %>
-<%= link_to 'Edit', edit_meeting_path(@meeting), class: "badge bg-warning" %>
-<% end %>
-<%= link_to 'Back', meetings_path, class: "badge bg-warning" %>
+<div class="row">
+    <div class="col-md-4">
+        <p>
+            Author: <%= @meeting.creator.name %> <br>
+            <strong>Content:</strong> <br>
+            <%= @meeting.content %>
+
+            <% if @meeting.invited_users.any? %>
+            <strong>Users invited:</strong> <br>
+            <% @meeting.invited_users.each do |user| %>
+            <%= user.name %>
+            <% end %>
+            <% end %>
+
+        </p>
+        <% if current_user?(@meeting.creator) %>
+        <%= link_to 'Edit', edit_meeting_path(@meeting), class: "badge bg-warning" %>
+        <% end %>
+        <%= link_to 'Back', meetings_path, class: "badge bg-warning" %>
+
+    </div>
+    <div class="col-md-8">
+        <ul class="users">
+            <%= render @users %>
+        </ul>
+    </div>
+</div>
