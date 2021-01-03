@@ -38,10 +38,17 @@
                                 class:"badge bg-secondary" %>
             <% end %>
             <% if current_user?(@meeting.creator) && user != current_user %>
+            <%if @meeting.invited_users.include?(user)%>
+            <%= link_to 'Dismiss',
+                                { controller: "meetings", action: "dismiss_user",
+                                user_id: user.id },
+                                class:"badge bg-danger" %>
+            <%else%>
             <%= link_to 'Invite',
                                 { controller: "meetings", action: "invite_user",
                                 user_id: user.id },
                                 class:"badge bg-secondary" %>
+            <%end%>
             <% end %>
             <% end %>
         </ul>
