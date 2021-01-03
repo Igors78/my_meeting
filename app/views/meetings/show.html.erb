@@ -39,7 +39,8 @@
             <% end %>
             <% if current_user?(@meeting.creator) && user != current_user %>
             <%= link_to 'Invite',
-                                { controller: "meetings", action: "invite_user" },
+                                { controller: "meetings", action: "invite_user",
+                                user_id: user.id },
                                 class:"badge bg-secondary" %>
             <% end %>
             <% end %>

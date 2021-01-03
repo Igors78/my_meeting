@@ -8,5 +8,9 @@ Rails.application.routes.draw do
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
   resources :users
-  resources :meetings
+  resources :meetings do
+    member do
+      get '/invite_user', to: 'meetings#invite_user'
+    end
+  end
 end
