@@ -12,7 +12,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_201_230_120_006) do
+ActiveRecord::Schema.define(version: 20_210_102_162_520) do
+  create_table 'invites', force: :cascade do |t|
+    t.integer 'user_id', null: false
+    t.integer 'meeting_id', null: false
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
+    t.index ['meeting_id'], name: 'index_invites_on_meeting_id'
+    t.index ['user_id'], name: 'index_invites_on_user_id'
+  end
+
   create_table 'meetings', force: :cascade do |t|
     t.text 'content'
     t.datetime 'created_at', precision: 6, null: false
@@ -29,5 +38,7 @@ ActiveRecord::Schema.define(version: 20_201_230_120_006) do
     t.index ['name'], name: 'index_users_on_name', unique: true
   end
 
+  add_foreign_key 'invites', 'meetings'
+  add_foreign_key 'invites', 'users'
   add_foreign_key 'meetings', 'users'
 end

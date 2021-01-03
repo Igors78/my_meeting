@@ -1,10 +1,10 @@
+<div class="offset-4 col-md-4">
+    <h3 class='text-center'>
+        <%= @user.name %>
+    </h3>
+</div>
 <div class="row">
-    <div class="offset-4 col-md-4">
-        <h3 class='text-center'>
-            <%= @user.name %>
-        </h3>
-    </div>
-    <div class="col-md-8">
+    <div class="col-md-6">
 
         <% if @user.meetings.any? %>
 
@@ -13,6 +13,26 @@
             <%= render @meetings %>
         </ol>
 
+        <% end %>
+    </div>
+    <div class="col-md-6">
+        <%if @user.invited_to_meetings.any?%>
+        <p>Invited to meetings:</p>
+        <ol>
+            <% @user.invited_to_meetings.each do |meeting|%>
+            <li>
+                <%= meeting.content %>
+            </li>
+            <%end%>
+        </ol>
+        <%end%>
+        <br>
+
+
+        <% if current_user?(@user) %>
+        <%= link_to "Delete user", @user, method: :delete,
+                                data: { confirm: "You sure?" },
+                                class:"badge bg-secondary" %>
         <% end %>
     </div>
 </div>

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class MeetingsController < ApplicationController
-  before_action :set_meeting, only: %i[show edit update destroy]
+  before_action :set_meeting, only: %i[show edit update destroy invite_user dismiss_user]
 
   # GET /meetings
   # GET /meetings.json
@@ -11,7 +11,9 @@ class MeetingsController < ApplicationController
 
   # GET /meetings/1
   # GET /meetings/1.json
-  def show; end
+  def show
+    @users = User.all
+  end
 
   # GET /meetings/new
   def new
@@ -56,6 +58,21 @@ class MeetingsController < ApplicationController
       flash[:alert] = 'Error'
     end
     redirect_to root_path
+  end
+
+  def invite_user
+    @user = User.find(params[:user_id])
+    @meeting.invited_users << @user
+    flash[:success] = " #{@user.name} invited!!!"
+    redirect_to "/meetings/#{@meeting.id}"
+  end
+
+  def dismiss_user
+    @user = User.find(params[:user_id])
+
+    @meeting.invited_users.delete(@user)
+    flash[:danger] = " #{@user.name} dismissed!!!"
+    redirect_to "/meetings/#{@meeting.id}"
   end
 
   private

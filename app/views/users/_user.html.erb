@@ -1,10 +1,24 @@
-<li class="col-md-6">
+<li>
 
 
     <%= link_to user.name, user %> <br>
-    <% if current_user.name == user.name %>
-    <%= link_to "Delete", user, method: :delete,
-                                  data: { confirm: "You sure?" }, class:"badge bg-secondary" %>
+    <%if user.invited_to_meetings.any?%>
+    <p>Invited to meetings:</p>
+    <ol>
+        <% user.invited_to_meetings.each do |meeting|%>
+        <li>
+            <%= meeting.content %>
+        </li>
+        <%end%>
+    </ol>
+    <%end%>
+    <br>
+
+
+    <% if current_user?(user) %>
+    <%= link_to "Delete user", user, method: :delete,
+                                data: { confirm: "You sure?" },
+                                class:"badge bg-secondary" %>
     <% end %>
 
 </li>
