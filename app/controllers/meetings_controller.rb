@@ -60,6 +60,12 @@ class MeetingsController < ApplicationController
     redirect_to root_path
   end
 
+  def invite_user
+    @meeting.invited_users << @user
+    flash.notice = " #{@user.name} invited!!!"
+    redirect_to "/meetings/#{@meeting.id}"
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.

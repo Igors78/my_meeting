@@ -4,9 +4,8 @@
     <%= link_to user.name, user %> <br>
     <% if current_user?(user) %>
     <%= link_to "Delete", user, method: :delete,
-                                  data: { confirm: "You sure?" }, class:"badge bg-secondary" %>
+                                data: { confirm: "You sure?" },
+                                class:"badge bg-secondary" %>
     <% end %>
-    <% if current_user?(@meeting.creator) %>
-    <%= link_to 'Invite', '#', class:"badge bg-secondary" %>
-    <% end %>
+
 </li>

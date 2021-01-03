@@ -13,6 +13,14 @@
             <% end %>
 
         </p>
+        <small class="timestamp">
+            Posted <%= time_ago_in_words(@meeting.created_at) %> ago.
+            <% if current_user?(@meeting.creator) %>
+            <%= link_to "Delete", @meeting, method: :delete,
+                                       data: { confirm: "You sure?" },
+                                       class: "badge bg-warning" %>
+            <% end %>
+        </small>
         <% if current_user?(@meeting.creator) %>
         <%= link_to 'Edit', edit_meeting_path(@meeting), class: "badge bg-warning" %>
         <% end %>
@@ -20,8 +28,21 @@
 
     </div>
     <div class="col-md-8">
+        <h3>All users</h3>
         <ul class="users">
-            <%= render @users %>
+            <%  @users.each do |user|%>
+            <li><%= link_to user.name, user %></li>
+            <% if current_user?(user) %>
+            <%= link_to "Delete", user, method: :delete,
+                                data: { confirm: "You sure?" },
+                                class:"badge bg-secondary" %>
+            <% end %>
+            <% if current_user?(@meeting.creator) && user != current_user %>
+            <%= link_to 'Invite',
+                                { controller: "meetings", action: "invite_user" },
+                                class:"badge bg-secondary" %>
+            <% end %>
+            <% end %>
         </ul>
     </div>
 </div>
